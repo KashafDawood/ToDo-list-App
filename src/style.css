@@ -89,8 +89,16 @@ i{
     padding-right: 10px;
 }
 
+/* -----------todist container------------- */
+.todoistContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 /* -------------nav-------------- */
 .navBar{
+    flex-basis: 25%;
     max-width: 20rem;
     height: 100vh;
     background: var(--color-primary);
@@ -118,4 +126,23 @@ i{
     padding: 0.2rem 1rem;
     font-size: 1.4rem;
     font-weight: 500;
+}
+
+/* ------------------todoist------------------------ */
+
+.todoist{
+    flex-basis: 50%;
+    padding: 1rem 2rem;
+}
+
+.time, .noOfTasks{
+    display: inline-block;
+}
+
+.noOfTasks{
+    margin: 0 2rem;
+    padding: 0 1rem;
+    font-weight: 400;
+    background-color: var(--color-primary);
+    border-radius: 8px;
 }
