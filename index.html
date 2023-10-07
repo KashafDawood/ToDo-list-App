@@ -94,12 +94,24 @@
 
                 <div class="input--title input"><input type="text" placeholder="Title"></div>
                 <div class="input--description input"><textarea name="input--description" cols="" rows="10" placeholder="Description"></textarea></div>
-                <div class="input--catagory input">List </div>
+                <div class="input--catagory input">Catagory 
+                    <select name="catagory--selection">
+                        <option value="">--Select Catagory--</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Study">Study</option>
+                        <option value="List1">List 1</option>
+                    </select>
+                </div>
                 <div class="input--due__date input">Due Date <input type="date" name="input--due__date"></div>
                 <div class="priorityBtn input">
                     <div class="priority1 btn">priority 1</div>
                     <div class="priority2 btn">priority 2</div>
                     <div class="priority3 btn">priority 3</div>
+                </div>
+
+                <div class="input--save">
+                    <div class="delete--task btn btnLg">Delete Task</div>
+                    <div class="btn--save btnPrimary btnLg">Save Changes</div>
                 </div>
 
             </form>
