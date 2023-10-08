@@ -1,17 +1,20 @@
-const closeTaskEditorBtn = document.querySelector(".closeIcon");
-const TaskEditorContainer = document.querySelector(".taskCustomizerContainer");
-const task = document.querySelectorAll(".tasks");
-const addTaskContainer = document.querySelector(".addtaskContainer");
-const addTaskBtn = document.querySelector(".addTaskBtn");
+import taskEditorView from "./taskEditorView.js";
+import * as config from "./config.js";
 
-closeTaskEditorBtn.addEventListener("click", function(){
-    TaskEditorContainer.style.display = "none";
-});
 
-task.forEach(t => t.addEventListener("click", function(){
-    TaskEditorContainer.style.display = "block";
-}));
+// closeTaskEditorBtn.addEventListener("click", function(){
+//     TaskEditorContainer.style.display = "none";
+// });
 
-addTaskBtn.addEventListener("click", function(){
-    TaskEditorContainer.style.display = "block";
-})
+// task.forEach(t => t.addEventListener("click", function(){
+//     TaskEditorContainer.style.display = "block";
+// }));
+
+// addTaskBtn.addEventListener("click", function(){
+//     TaskEditorContainer.style.display = "block";
+// })
+
+const init = function(){
+    taskEditorView.closeTaskEditorHandler();
+}
+init();

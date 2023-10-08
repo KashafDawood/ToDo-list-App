@@ -209,7 +209,7 @@ i{
 
 /* -----------------------taskCustomizerContainer--------------- */
 .taskCustomizerContainer{
-    display: none;
+    /* display: none; */
     margin: 1rem;
     padding: 1.5rem;
     width: 31%;

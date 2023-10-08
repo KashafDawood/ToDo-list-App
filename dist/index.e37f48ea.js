@@ -574,21 +574,83 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"aenu9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _taskEditorViewJs = require("./taskEditorView.js");
+var _taskEditorViewJsDefault = parcelHelpers.interopDefault(_taskEditorViewJs);
+var _configJs = require("./config.js");
+// closeTaskEditorBtn.addEventListener("click", function(){
+//     TaskEditorContainer.style.display = "none";
+// });
+// task.forEach(t => t.addEventListener("click", function(){
+//     TaskEditorContainer.style.display = "block";
+// }));
+// addTaskBtn.addEventListener("click", function(){
+//     TaskEditorContainer.style.display = "block";
+// })
+const init = function() {
+    (0, _taskEditorViewJsDefault.default).closeTaskEditorHandler();
+};
+init();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./taskEditorView.js":"bxq0K","./config.js":"k5Hzs"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"bxq0K":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _configJs = require("./config.js");
+class TaskEditorView {
+    #parentEL = document.querySelector(".taskCustomizerContainer");
+    #data;
+    closeTaskEditorHandler() {
+        _configJs.closeTaskEditorBtn.addEventListener("click", function() {
+            _configJs.TaskEditorContainer.style.display = "none";
+        });
+    }
+}
+exports.default = new TaskEditorView();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs"}],"k5Hzs":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "closeTaskEditorBtn", ()=>closeTaskEditorBtn);
+parcelHelpers.export(exports, "TaskEditorContainer", ()=>TaskEditorContainer);
+parcelHelpers.export(exports, "task", ()=>task);
+parcelHelpers.export(exports, "addTaskContainer", ()=>addTaskContainer);
+parcelHelpers.export(exports, "addTaskBtn", ()=>addTaskBtn);
 const closeTaskEditorBtn = document.querySelector(".closeIcon");
 const TaskEditorContainer = document.querySelector(".taskCustomizerContainer");
 const task = document.querySelectorAll(".tasks");
 const addTaskContainer = document.querySelector(".addtaskContainer");
 const addTaskBtn = document.querySelector(".addTaskBtn");
-closeTaskEditorBtn.addEventListener("click", function() {
-    TaskEditorContainer.style.display = "none";
-});
-task.forEach((t)=>t.addEventListener("click", function() {
-        TaskEditorContainer.style.display = "block";
-    }));
-addTaskBtn.addEventListener("click", function() {
-    TaskEditorContainer.style.display = "block";
-});
 
-},{}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire0b74")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire0b74")
 
 //# sourceMappingURL=index.e37f48ea.js.map
