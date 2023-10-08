@@ -1,0 +1,239 @@
+@import "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap";
+* {
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  font-family: Space Grotesk;
+  text-decoration: none;
+  list-style: none;
+}
+
+:root {
+  --color-primary: #ececec;
+  --color-secondary: #f2be22;
+  --color-black: #222;
+  --color-white: #fff;
+}
+
+h1, h2, h3, h4, h5, p {
+  color: var(--color-black);
+}
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+p {
+  font-size: .8rem;
+}
+
+a {
+  color: #222;
+}
+
+.btn {
+  background: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid var(--color-black);
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: .6rem 1.4rem;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+  transition: all .4s;
+}
+
+.btnPrimary {
+  background: var(--color-secondary);
+  color: var(--color-black);
+  cursor: pointer;
+  border: 1px solid #0000;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: .6rem 1.4rem;
+  display: inline-block;
+}
+
+.btnPrimary:hover {
+  border-color: var(--color-black);
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.btnLg {
+  border-radius: 5px;
+  padding: .8rem 1.8rem;
+  font-size: 1.2rem;
+}
+
+i {
+  padding-right: 10px;
+  display: inline-block;
+}
+
+.todoistContainer {
+  flex-flow: row;
+  display: flex;
+}
+
+.navBar {
+  background: var(--color-primary);
+  border-radius: 15px;
+  width: 20%;
+  height: 100vh;
+  margin: 1rem;
+  padding: 1.5rem;
+}
+
+.Header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.navLinks {
+  padding: 2rem 0;
+}
+
+.navLinkCatagory {
+  padding: .5rem 0;
+}
+
+.navLink {
+  padding: .2rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.todoist {
+  width: 80%;
+  padding: 1rem 2rem;
+}
+
+.time, .noOfTasks {
+  display: inline-block;
+}
+
+.noOfTasks {
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  margin: 0 2rem;
+  padding: 0 1rem;
+  font-weight: 400;
+}
+
+.addtaskContainer {
+  margin: 3rem 0 1rem;
+}
+
+.addTaskBtn {
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  padding: 1rem;
+}
+
+.addTaskBtn:hover {
+  background-color: var(--color-primary);
+}
+
+.tasks {
+  border-bottom: 1px solid var(--color-primary);
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.taskTitle {
+  justify-content: space-between;
+  font-size: 1.5rem;
+  display: flex;
+}
+
+.taskSpecs {
+  grid-template-columns: repeat(6, 1fr);
+  padding: 1rem 0 0;
+  display: grid;
+}
+
+.taskCustomizerContainer {
+  background-color: var(--color-primary);
+  border-radius: 15px;
+  width: 31%;
+  margin: 1rem;
+  padding: 1.5rem;
+  display: none;
+  position: relative;
+}
+
+.closeIcon {
+  cursor: pointer;
+}
+
+.input--customization {
+  margin: 1.5rem 0 1rem;
+}
+
+.input--customization .input {
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  border: 1px solid var(--color-black);
+  background-color: #0000;
+  border-radius: 3px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.input--due__date input, select {
+  border: 1px solid var(--color-black);
+  background-color: #0000;
+  border-radius: 3px;
+  width: 12rem;
+  margin-left: 10px;
+  padding: 10px 20px;
+}
+
+.priorityBtn .btn {
+  margin: 1rem 0 4rem;
+}
+
+.input--save {
+  margin: 2rem 0;
+  position: absolute;
+  bottom: 0;
+}
+
+.btn--save {
+  margin-left: 1rem;
+}
+
+/*# sourceMappingURL=index.2cdaf7bc.css.map */

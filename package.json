@@ -1,0 +1,15 @@
+{
+  "name": "todo-list-app",
+  "version": "1.0.0",
+  "description": "",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "bulid": "parcel build index.html"
+  },
+  "author": "Kashaf Dawood",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
