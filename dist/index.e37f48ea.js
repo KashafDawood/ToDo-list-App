@@ -579,18 +579,33 @@ var _taskEditorViewJs = require("./taskEditorView.js");
 var _taskEditorViewJsDefault = parcelHelpers.interopDefault(_taskEditorViewJs);
 var _taskContainerViewJs = require("./taskContainerView.js");
 var _taskContainerViewJsDefault = parcelHelpers.interopDefault(_taskContainerViewJs);
+var _modelJs = require("./model.js");
 var _configJs = require("./config.js");
+const controlFormData = function() {
+    const formData = (0, _taskEditorViewJsDefault.default).getFormData();
+    if (!formData) return;
+    console.log(formData);
+    //push data to model.task array
+    _modelJs.tasks.push(formData);
+    console.log(_modelJs.tasks);
+};
 const init = function() {
     (0, _taskEditorViewJsDefault.default).closeTaskEditorHandler();
     (0, _taskEditorViewJsDefault.default).priorityCheck();
+    (0, _taskEditorViewJsDefault.default).addHandlerForm(controlFormData);
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
 };
 init();
 
-},{"./taskEditorView.js":"bxq0K","./taskContainerView.js":"iTH8D","./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bxq0K":[function(require,module,exports) {
+},{"./taskEditorView.js":"bxq0K","./taskContainerView.js":"iTH8D","./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./model.js":"Y4A21"}],"bxq0K":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _configJs = require("./config.js");
+// export let taskTitleInput = document.querySelector(".title--input").value;
+// export let taskDescriptionInput = document.querySelector(".description--input").value;
+// export let taskCatagoryInput = document.querySelector(".catagory--input").value;
+// export let taskDueDateInput = document.querySelector(".dueDate--input").value;
+// export let taskPriorityInput = document.querySelector(".priority--input");
 class TaskEditorView {
     #parentEL = document.querySelector(".taskCustomizerContainer");
     #data;
@@ -598,6 +613,13 @@ class TaskEditorView {
         _configJs.closeTaskEditorBtn.addEventListener("click", function() {
             _configJs.TaskEditorContainer.style.display = "none";
         });
+    }
+    #clearForm() {
+        this.#parentEL.querySelector(".title--input").value = "";
+        this.#parentEL.querySelector(".description--input").value = "";
+        this.#parentEL.querySelector(".catagory--input").value = "";
+        this.#parentEL.querySelector(".dueDate--input").value = "";
+        _configJs.priorityBtns.forEach((el)=>el.classList.remove("priorityBtnActive"));
     }
     priorityCheck() {
         _configJs.priorityBtnContainer.addEventListener("click", function(e) {
@@ -614,6 +636,25 @@ class TaskEditorView {
             return clickedBtn.value;
         });
     }
+    getFormData() {
+        const task = {
+            taskTitle: this.#parentEL.querySelector(".title--input").value,
+            taskDescription: this.#parentEL.querySelector(".description--input").value,
+            taskCatagory: this.#parentEL.querySelector(".catagory--input").value,
+            taskDueDate: this.#parentEL.querySelector(".dueDate--input").value,
+            taskPriority: this.priorityCheck()
+        };
+        //clear form
+        this.#clearForm();
+        return task;
+    }
+    addHandlerForm(handler) {
+        _configJs.saveTaskBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            //handle data to controller
+            handler();
+        });
+    }
 }
 exports.default = new TaskEditorView();
 
@@ -625,6 +666,7 @@ parcelHelpers.export(exports, "TaskEditorContainer", ()=>TaskEditorContainer);
 parcelHelpers.export(exports, "task", ()=>task);
 parcelHelpers.export(exports, "addTaskContainer", ()=>addTaskContainer);
 parcelHelpers.export(exports, "addTaskBtn", ()=>addTaskBtn);
+parcelHelpers.export(exports, "saveTaskBtn", ()=>saveTaskBtn);
 parcelHelpers.export(exports, "priorityBtnContainer", ()=>priorityBtnContainer);
 parcelHelpers.export(exports, "priorityBtns", ()=>priorityBtns);
 const closeTaskEditorBtn = document.querySelector(".closeIcon");
@@ -632,6 +674,7 @@ const TaskEditorContainer = document.querySelector(".taskCustomizerContainer");
 const task = document.querySelectorAll(".tasks");
 const addTaskContainer = document.querySelector(".addtaskContainer");
 const addTaskBtn = document.querySelector(".addTaskBtn");
+const saveTaskBtn = document.querySelector(".btn--save");
 const priorityBtnContainer = document.querySelector(".priorityBtn");
 const priorityBtns = document.querySelectorAll(".priority--input");
 
@@ -679,6 +722,13 @@ class TaskContainerView {
     }
 }
 exports.default = new TaskContainerView();
+
+},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Y4A21":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tasks", ()=>tasks);
+var _configJs = require("./config.js");
+const tasks = [];
 
 },{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire0b74")
 

@@ -15,6 +15,11 @@
   --color-secondary: #f2be22;
   --color-black: #222;
   --color-white: #fff;
+  --text: #04160c;
+  --background: #e9fbf2;
+  --primary: #75e6aa;
+  --secondary: #c3f4da;
+  --accent: #24c670;
 }
 
 h1, h2, h3, h4, h5, p {
