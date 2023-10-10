@@ -188,6 +188,7 @@ i {
   width: 31%;
   margin: 1rem;
   padding: 1.5rem;
+  display: none;
   position: relative;
 }
 
