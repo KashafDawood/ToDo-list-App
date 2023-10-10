@@ -22,8 +22,12 @@
   --accent: #24c670;
 }
 
+body {
+  background-color: var(--background);
+}
+
 h1, h2, h3, h4, h5, p {
-  color: var(--color-black);
+  color: var(--text);
 }
 
 h1 {
@@ -53,7 +57,7 @@ p {
 }
 
 a {
-  color: #222;
+  color: var(--text);
 }
 
 .btn {
@@ -68,13 +72,13 @@ a {
 }
 
 .btn:hover {
-  background: var(--color-black);
-  color: var(--color-white);
+  background: var(--primary);
+  color: var(--text);
   transition: all .4s;
 }
 
 .btnPrimary {
-  background: var(--color-secondary);
+  background: var(--accent);
   color: var(--color-black);
   cursor: pointer;
   border: 1px solid #0000;
@@ -107,7 +111,7 @@ i {
 }
 
 .navBar {
-  background: var(--color-primary);
+  background: var(--primary);
   border-radius: 15px;
   width: 20%;
   height: 100vh;
@@ -146,7 +150,7 @@ i {
 }
 
 .noOfTasks {
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--primary);
   border-radius: 8px;
   margin: 0 2rem;
   padding: 0 1rem;
@@ -158,7 +162,7 @@ i {
 }
 
 .addTaskBtn {
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--secondary);
   cursor: pointer;
   border-radius: 5px;
   width: 100%;
@@ -166,11 +170,11 @@ i {
 }
 
 .addTaskBtn:hover {
-  background-color: var(--color-primary);
+  background-color: var(--accent);
 }
 
 .tasks {
-  border-bottom: 1px solid var(--color-primary);
+  border-bottom: 1px solid var(--secondary);
   cursor: pointer;
   padding: 1rem;
 }
@@ -188,7 +192,7 @@ i {
 }
 
 .taskCustomizerContainer {
-  background-color: var(--color-primary);
+  background-color: var(--primary);
   border-radius: 15px;
   width: 31%;
   margin: 1rem;

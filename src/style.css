@@ -16,16 +16,25 @@
     --color-secondary: #F2BE22;
     --color-black: #222;
     --color-white: #ffff;
-    --text: #04160c;
+    /* --text: #04160c;
     --background: #e9fbf2;
     --primary: #75e6aa;
     --secondary: #c3f4da;
-    --accent: #24c670;
+    --accent: #24c670; */
+    --text: #060906;
+    --background: #e3ede4;
+    --primary: #abc9ae;
+    --secondary: #e0ebe1;
+    --accent: #639c68;
+    
+}
 
+body{
+    background-color: var(--background);
 }
 
 h1,h2,h3,h4,h5,p{
-    color: var(--color-black);
+    color: var(--text);
 }
 
 h1 {
@@ -55,7 +64,7 @@ p{
 }
 
 a{
-    color: #222;
+    color: var(--text);
 }
 
 /* .btn {
@@ -76,7 +85,7 @@ a{
 } */
 
 .btn{
-    background: var(--color-white);
+    background: var(--background);
     color: var(--color-black);
     border: 1px solid var(--color-black);
     display: inline-block;
@@ -86,13 +95,13 @@ a{
 }
 
 .btn:hover {
-    background: var(--color-black);
-    color: var(--color-white);
+    background: var(--primary);
+    color: var(--text);
     transition: all 400ms ease;
 }
 
 .btnPrimary {
-    background: var(--color-secondary);
+    background: var(--accent);
     color: var(--color-black);
     display: inline-block;
     width: fit-content;
@@ -130,7 +139,7 @@ i{
     /* flex-basis: 20%; */
     width: 20%;
     height: 100vh;
-    background: var(--color-primary);
+    background: var(--secondary);
     margin: 1rem;
     padding: 1.5rem;
     border-radius: 15px;
@@ -173,7 +182,7 @@ i{
     margin: 0 2rem;
     padding: 0 1rem;
     font-weight: 400;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--primary);
     border-radius: 8px;
 }
 
@@ -184,7 +193,7 @@ i{
 }
 
 .addTaskBtn{
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--primary);
     padding: 1rem;
     border-radius: 5px;
     width: 100%;
@@ -192,12 +201,12 @@ i{
 }
 
 .addTaskBtn:hover{
-    background-color: var(--color-primary);
+    background-color: var(--accent);
 }
 
 .tasks{
     padding: 1rem;
-    border-bottom: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--primary);
     cursor: pointer;
 }
 
@@ -219,7 +228,7 @@ i{
     margin: 1rem;
     padding: 1.5rem;
     width: 31%;
-    background-color: var(--color-primary);
+    background-color: var(--secondary);
     border-radius: 15px;
     position: relative;
 }
