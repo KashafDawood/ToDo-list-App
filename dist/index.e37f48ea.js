@@ -582,11 +582,12 @@ var _taskContainerViewJsDefault = parcelHelpers.interopDefault(_taskContainerVie
 var _configJs = require("./config.js");
 const init = function() {
     (0, _taskEditorViewJsDefault.default).closeTaskEditorHandler();
+    (0, _taskEditorViewJsDefault.default).priorityCheck();
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
 };
 init();
 
-},{"./taskEditorView.js":"bxq0K","./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./taskContainerView.js":"iTH8D"}],"bxq0K":[function(require,module,exports) {
+},{"./taskEditorView.js":"bxq0K","./taskContainerView.js":"iTH8D","./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bxq0K":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _configJs = require("./config.js");
@@ -596,6 +597,21 @@ class TaskEditorView {
     closeTaskEditorHandler() {
         _configJs.closeTaskEditorBtn.addEventListener("click", function() {
             _configJs.TaskEditorContainer.style.display = "none";
+        });
+    }
+    priorityCheck() {
+        _configJs.priorityBtnContainer.addEventListener("click", function(e) {
+            e.preventDefault();
+            const clickedBtn = e.target.closest(".priority--input");
+            //guard clause
+            if (!clickedBtn) return;
+            //remove the active class from all btn
+            _configJs.priorityBtns.forEach((el)=>el.classList.remove("priorityBtnActive"));
+            //add active class to clicked class
+            clickedBtn.classList.add("priorityBtnActive");
+            console.log(clickedBtn.value);
+            //getting the value of the btn which have active class
+            return clickedBtn.value;
         });
     }
 }
@@ -609,11 +625,15 @@ parcelHelpers.export(exports, "TaskEditorContainer", ()=>TaskEditorContainer);
 parcelHelpers.export(exports, "task", ()=>task);
 parcelHelpers.export(exports, "addTaskContainer", ()=>addTaskContainer);
 parcelHelpers.export(exports, "addTaskBtn", ()=>addTaskBtn);
+parcelHelpers.export(exports, "priorityBtnContainer", ()=>priorityBtnContainer);
+parcelHelpers.export(exports, "priorityBtns", ()=>priorityBtns);
 const closeTaskEditorBtn = document.querySelector(".closeIcon");
 const TaskEditorContainer = document.querySelector(".taskCustomizerContainer");
 const task = document.querySelectorAll(".tasks");
 const addTaskContainer = document.querySelector(".addtaskContainer");
 const addTaskBtn = document.querySelector(".addTaskBtn");
+const priorityBtnContainer = document.querySelector(".priorityBtn");
+const priorityBtns = document.querySelectorAll(".priority--input");
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {

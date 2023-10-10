@@ -107,7 +107,7 @@
 
             <form class="input--customization" onsubmit="getTaskEditorData()" action="">
 
-                <div class="input--title input"><input class="title--input" type="text" placeholder="Title"></div>
+                <div class="input--title input"><input class="title--input" type="text" name="title" placeholder="Title"></div>
                 <div class="input--description input"><textarea class="description--input" name="input--description" cols="" rows="10" placeholder="Description"></textarea></div>
                 <div class="input--catagory input">Catagory 
                     <select class="catagory--input" name="catagory--selection">
@@ -119,9 +119,9 @@
                 </div>
                 <div class="input--due__date input">Due Date <input class="dueDate--input" type="date" name="input--due__date"></div>
                 <div class="priorityBtn input">
-                    <div class="priority--input priority1 btn">priority 1</div>
-                    <div class="priority--input priority2 btn">priority 2</div>
-                    <div class="priority--input priority3 btn">priority 3</div>
+                    <button class="priority--input priority1 btn" value="priority 1">priority 1</button>
+                    <button class="priority--input priority2 btn" value="priority 2">priority 2</button>
+                    <button class="priority--input priority3 btn" value="priority 3">priority 3</button>
                 </div>
 
                 <div class="input--save">

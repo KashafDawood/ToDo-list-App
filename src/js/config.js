@@ -3,3 +3,6 @@ export const TaskEditorContainer = document.querySelector(".taskCustomizerContai
 export const task = document.querySelectorAll(".tasks");
 export const addTaskContainer = document.querySelector(".addtaskContainer");
 export const addTaskBtn = document.querySelector(".addTaskBtn");
+
+export const priorityBtnContainer = document.querySelector('.priorityBtn');
+export const priorityBtns = document.querySelectorAll('.priority--input');

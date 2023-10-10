@@ -226,6 +226,11 @@ input, textarea {
   margin: 1rem 0 4rem;
 }
 
+.priorityBtnActive {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
 .input--save {
   margin: 2rem 0;
   position: absolute;
