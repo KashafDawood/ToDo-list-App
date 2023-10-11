@@ -258,7 +258,11 @@ input, textarea{
     border: 1px solid var(--color-black);
 }
 
-.priorityBtn .btn{
+.space{
+    margin-bottom: 8rem;
+}
+
+/* .priorityBtn .btn{
     margin: 1rem 0;
     margin-bottom: 4rem;
 }
@@ -266,7 +270,7 @@ input, textarea{
 .priorityBtnActive{
     background-color: var(--primary);
     color: var(--text);
-}
+} */
 
 .input--save{
     position: absolute;

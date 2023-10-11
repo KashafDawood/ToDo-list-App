@@ -591,7 +591,7 @@ const controlFormData = function() {
 };
 const init = function() {
     (0, _taskEditorViewJsDefault.default).closeTaskEditorHandler();
-    (0, _taskEditorViewJsDefault.default).priorityCheck();
+    // console.log(taskEditorView.priorityCheck());
     (0, _taskEditorViewJsDefault.default).addHandlerForm(controlFormData);
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
 };
@@ -619,30 +619,31 @@ class TaskEditorView {
         this.#parentEL.querySelector(".description--input").value = "";
         this.#parentEL.querySelector(".catagory--input").value = "";
         this.#parentEL.querySelector(".dueDate--input").value = "";
-        _configJs.priorityBtns.forEach((el)=>el.classList.remove("priorityBtnActive"));
+        this.#parentEL.querySelector(".priority--input").value = "";
     }
-    priorityCheck() {
-        _configJs.priorityBtnContainer.addEventListener("click", function(e) {
-            e.preventDefault();
-            const clickedBtn = e.target.closest(".priority--input");
-            //guard clause
-            if (!clickedBtn) return;
-            //remove the active class from all btn
-            _configJs.priorityBtns.forEach((el)=>el.classList.remove("priorityBtnActive"));
-            //add active class to clicked class
-            clickedBtn.classList.add("priorityBtnActive");
-            console.log(clickedBtn.value);
-            //getting the value of the btn which have active class
-            return clickedBtn.value;
-        });
-    }
+    // priorityCheck(){
+    //     config.priorityBtnContainer.addEventListener('click', function(e){
+    //         e.preventDefault();
+    //         const clickedBtn = e.target.closest('.priority--input');
+    //         //guard clause
+    //         if(!clickedBtn) return;
+    //         //remove the active class from all btn
+    //         config.priorityBtns.forEach(el => el.classList.remove('priorityBtnActive'));
+    //         //add active class to clicked class
+    //         clickedBtn.classList.add('priorityBtnActive');
+    //         const btnValue = clickedBtn.value;
+    //         // console.log(btnValue);
+    //         //getting the value of the btn which have active class
+    //         return btnValue;
+    //     });
+    // }
     getFormData() {
         const task = {
             taskTitle: this.#parentEL.querySelector(".title--input").value,
             taskDescription: this.#parentEL.querySelector(".description--input").value,
             taskCatagory: this.#parentEL.querySelector(".catagory--input").value,
             taskDueDate: this.#parentEL.querySelector(".dueDate--input").value,
-            taskPriority: this.priorityCheck()
+            taskPriority: this.#parentEL.querySelector(".priority--input").value
         };
         //clear form
         this.#clearForm();
@@ -669,6 +670,7 @@ parcelHelpers.export(exports, "addTaskBtn", ()=>addTaskBtn);
 parcelHelpers.export(exports, "saveTaskBtn", ()=>saveTaskBtn);
 parcelHelpers.export(exports, "priorityBtnContainer", ()=>priorityBtnContainer);
 parcelHelpers.export(exports, "priorityBtns", ()=>priorityBtns);
+parcelHelpers.export(exports, "taskContainer", ()=>taskContainer);
 const closeTaskEditorBtn = document.querySelector(".closeIcon");
 const TaskEditorContainer = document.querySelector(".taskCustomizerContainer");
 const task = document.querySelectorAll(".tasks");
@@ -677,6 +679,7 @@ const addTaskBtn = document.querySelector(".addTaskBtn");
 const saveTaskBtn = document.querySelector(".btn--save");
 const priorityBtnContainer = document.querySelector(".priorityBtn");
 const priorityBtns = document.querySelectorAll(".priority--input");
+const taskContainer = document.querySelector(".taskContainer");
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -719,6 +722,30 @@ class TaskContainerView {
         _configJs.addTaskBtn.addEventListener("click", function() {
             _configJs.TaskEditorContainer.style.display = "block";
         });
+    }
+    renderTask(data) {
+        //task info
+        this.#data = data;
+        //add generate markup with this data
+        const markup = this.generateTaskMarkup();
+        //insert the markup in html
+        _configJs.taskContainer.insertAdjacentHTML("afterbegin", markup);
+    }
+    generateTaskMarkup() {
+        return `
+            <div class="tasks">
+                <div class="taskTitle">
+                    <h5>${this.#data.taskTitle}</h5>
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+
+                <div class="taskSpecs">
+                    <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${this.#data.taskDueDate}</div>
+                    <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${this.#data.taskCatagory}</div>
+                    <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${this.#data.taskPriority}</div>
+                </div>
+            </div>
+        `;
     }
 }
 exports.default = new TaskContainerView();

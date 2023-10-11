@@ -24,27 +24,28 @@ class TaskEditorView{
         this.#parentEL.querySelector('.description--input').value = '';
         this.#parentEL.querySelector('.catagory--input').value = '';
         this.#parentEL.querySelector('.dueDate--input').value = '';
-        config.priorityBtns.forEach(el => el.classList.remove('priorityBtnActive'));
+        this.#parentEL.querySelector('.priority--input').value = '';
     }
 
-    priorityCheck(){
-        config.priorityBtnContainer.addEventListener('click', function(e){
-            e.preventDefault();
+    // priorityCheck(){
+    //     config.priorityBtnContainer.addEventListener('click', function(e){
+    //         e.preventDefault();
 
-            const clickedBtn = e.target.closest('.priority--input');
+    //         const clickedBtn = e.target.closest('.priority--input');
 
-            //guard clause
-            if(!clickedBtn) return;
+    //         //guard clause
+    //         if(!clickedBtn) return;
 
-            //remove the active class from all btn
-            config.priorityBtns.forEach(el => el.classList.remove('priorityBtnActive'));
-            //add active class to clicked class
-            clickedBtn.classList.add('priorityBtnActive');
-            console.log(clickedBtn.value);
-            //getting the value of the btn which have active class
-            return clickedBtn.value;
-        });
-    }
+    //         //remove the active class from all btn
+    //         config.priorityBtns.forEach(el => el.classList.remove('priorityBtnActive'));
+    //         //add active class to clicked class
+    //         clickedBtn.classList.add('priorityBtnActive');
+    //         const btnValue = clickedBtn.value;
+    //         // console.log(btnValue);
+    //         //getting the value of the btn which have active class
+    //         return btnValue;
+    //     });
+    // }
 
     getFormData(){
         const task = {
@@ -52,7 +53,7 @@ class TaskEditorView{
             taskDescription : this.#parentEL.querySelector('.description--input').value,
             taskCatagory : this.#parentEL.querySelector('.catagory--input').value,
             taskDueDate : this.#parentEL.querySelector('.dueDate--input').value,
-            taskPriority : this.priorityCheck()
+            taskPriority : this.#parentEL.querySelector('.priority--input').value,
         }
         //clear form
         this.#clearForm();

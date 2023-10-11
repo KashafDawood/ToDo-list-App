@@ -7,3 +7,5 @@ export const saveTaskBtn = document.querySelector(".btn--save")
 
 export const priorityBtnContainer = document.querySelector('.priorityBtn');
 export const priorityBtns = document.querySelectorAll('.priority--input');
+
+export const taskContainer = document.querySelector('.taskContainer');

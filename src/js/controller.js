@@ -16,7 +16,7 @@ const controlFormData = function(){
 
 const init = function(){
     taskEditorView.closeTaskEditorHandler();
-    taskEditorView.priorityCheck();
+    // console.log(taskEditorView.priorityCheck());
     taskEditorView.addHandlerForm(controlFormData);
     taskContainerView.addTaskHandler();
 }
