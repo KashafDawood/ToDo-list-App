@@ -10,6 +10,10 @@ class TaskContainerView{
         })
     }
 
+    addHandlerRender(handler) {
+        ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+    }
+
     renderTask(data){
         //task info
         this.#data = data;

@@ -589,11 +589,15 @@ const controlFormData = function() {
     _modelJs.tasks.push(formData);
     console.log(_modelJs.tasks);
 };
+const controlTask = function() {
+    (0, _taskContainerViewJsDefault.default).renderTask(_modelJs.tasks);
+};
 const init = function() {
     (0, _taskEditorViewJsDefault.default).closeTaskEditorHandler();
     // console.log(taskEditorView.priorityCheck());
     (0, _taskEditorViewJsDefault.default).addHandlerForm(controlFormData);
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
+    (0, _taskContainerViewJsDefault.default).addHandlerRender(controlTask);
 };
 init();
 
@@ -722,6 +726,12 @@ class TaskContainerView {
         _configJs.addTaskBtn.addEventListener("click", function() {
             _configJs.TaskEditorContainer.style.display = "block";
         });
+    }
+    addHandlerRender(handler) {
+        [
+            "hashchange",
+            "load"
+        ].forEach((ev)=>window.addEventListener(ev, handler));
     }
     renderTask(data) {
         //task info

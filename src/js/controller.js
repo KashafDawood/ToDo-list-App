@@ -14,10 +14,15 @@ const controlFormData = function(){
     console.log(model.tasks);
 }
 
+const controlTask = function(){
+    taskContainerView.renderTask(model.tasks);
+}
+
 const init = function(){
     taskEditorView.closeTaskEditorHandler();
     // console.log(taskEditorView.priorityCheck());
     taskEditorView.addHandlerForm(controlFormData);
     taskContainerView.addTaskHandler();
+    taskContainerView.addHandlerRender(controlTask);
 }
 init();
