@@ -16,17 +16,11 @@
     --color-secondary: #F2BE22;
     --color-black: #222;
     --color-white: #ffff;
-    /* --text: #04160c;
-    --background: #e9fbf2;
-    --primary: #75e6aa;
-    --secondary: #c3f4da;
-    --accent: #24c670; */
-    --text: #060906;
-    --background: #e3ede4;
-    --primary: #abc9ae;
-    --secondary: #e0ebe1;
-    --accent: #639c68;
-    
+    --text: #333;        /* Text color for content */
+    --background: #f8f8f8; /* Background color for the entire app */
+    --primary: #3498db;  /* Primary color for headings, active elements */
+    --secondary: #B4CDE6; /* Secondary color for secondary elements */
+    --accent: #7B88FF;  
 }
 
 body{
@@ -85,18 +79,19 @@ a{
 } */
 
 .btn{
-    background: var(--background);
-    color: var(--color-black);
-    border: 1px solid var(--color-black);
+    background: var(--color-white);
+    color: var(--text);
+    border: 1px solid var(--text);
     display: inline-block;
     width: fit-content;
     padding: 0.6rem 1.4rem;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .btn:hover {
-    background: var(--primary);
-    color: var(--text);
+    background-color: var(--primary);
+    box-shadow: 5px 10px 10px var(--primary);
     transition: all 400ms ease;
 }
 
@@ -111,9 +106,9 @@ a{
 }
 
 .btnPrimary:hover {
-    border-color: var(--color-black);
-    background: var(--color-white);
-    color: var(--color-black);
+    background-color: var(--primary);
+    box-shadow: 5px 10px 10px var(--accent);
+    transition: all 400ms ease;
 }
 
 .btnLg {
@@ -201,7 +196,7 @@ i{
 }
 
 .addTaskBtn:hover{
-    background-color: var(--accent);
+    background-color: var(--secondary);
 }
 
 .tasks{
@@ -269,8 +264,8 @@ input, textarea{
 }
 
 .priorityBtnActive{
-    background-color: var(--color-black);
-    color: var(--color-white);
+    background-color: var(--primary);
+    color: var(--text);
 }
 
 .input--save{
