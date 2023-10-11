@@ -23,6 +23,8 @@ const init = function(){
     // console.log(taskEditorView.priorityCheck());
     taskEditorView.addHandlerForm(controlFormData);
     taskContainerView.addTaskHandler();
-    taskContainerView.addHandlerRender(controlTask);
+    // taskContainerView.addHandlerRender(controlTask);
+    // taskContainerView.generateMarkupForTaskArray(model.tasks);
+    taskContainerView.addHandlerPreview(taskContainerView.generateMarkupForTaskArray(model.tasks));
 }
 init();

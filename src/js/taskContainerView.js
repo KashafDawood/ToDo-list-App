@@ -10,8 +10,18 @@ class TaskContainerView{
         })
     }
 
-    addHandlerRender(handler) {
-        ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+    addHandlerPreview(handler){
+        config.saveTaskBtn.addEventListener("click", function(e){
+            e.preventDefault();
+            //handle data to controller
+            handler();
+        });
+    }
+
+    generateMarkupForTaskArray(data){
+        this.#data = data;
+        const test = data.map(el => this.renderTask(el)).join('');
+        console.log(test);
     }
 
     renderTask(data){

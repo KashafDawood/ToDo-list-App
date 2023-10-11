@@ -597,7 +597,9 @@ const init = function() {
     // console.log(taskEditorView.priorityCheck());
     (0, _taskEditorViewJsDefault.default).addHandlerForm(controlFormData);
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
-    (0, _taskContainerViewJsDefault.default).addHandlerRender(controlTask);
+    // taskContainerView.addHandlerRender(controlTask);
+    // taskContainerView.generateMarkupForTaskArray(model.tasks);
+    (0, _taskContainerViewJsDefault.default).addHandlerPreview((0, _taskContainerViewJsDefault.default).generateMarkupForTaskArray(_modelJs.tasks));
 };
 init();
 
@@ -727,11 +729,17 @@ class TaskContainerView {
             _configJs.TaskEditorContainer.style.display = "block";
         });
     }
-    addHandlerRender(handler) {
-        [
-            "hashchange",
-            "load"
-        ].forEach((ev)=>window.addEventListener(ev, handler));
+    addHandlerPreview(handler) {
+        _configJs.saveTaskBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            //handle data to controller
+            handler();
+        });
+    }
+    generateMarkupForTaskArray(data) {
+        this.#data = data;
+        const test = data.map((el)=>this.renderTask(el)).join("");
+        console.log(test);
     }
     renderTask(data) {
         //task info
@@ -765,7 +773,22 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tasks", ()=>tasks);
 var _configJs = require("./config.js");
-const tasks = [];
+const tasks = [
+    {
+        taskTitle: "CS301 Quiz",
+        taskDescription: "chapter 5 quiz",
+        taskCatagory: "Study",
+        taskDueDate: "23-10-4",
+        taskPriority: "Priority 1"
+    },
+    {
+        taskTitle: "CS201 Quiz",
+        taskDescription: "chapter 2 quiz",
+        taskCatagory: "Study",
+        taskDueDate: "23-10-5",
+        taskPriority: "Priority 3"
+    }
+];
 
 },{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire0b74")
 
