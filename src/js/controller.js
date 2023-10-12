@@ -12,7 +12,7 @@ const controlFormData = function(){
     //push data to model.task array
     model.tasks.push(formData);
     console.log(model.tasks);
-    taskContainerView.renderTaskArray(model.tasks);
+    taskContainerView.update(model.tasks);
 }
 
 // const controlTask = function(){
