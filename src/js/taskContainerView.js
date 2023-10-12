@@ -20,9 +20,7 @@ class TaskContainerView {
     renderTaskArray(data) {
         //task info
         this.#data = data;
-        const test = data.map(el => this.renderTask(el)).join('');
-        console.log(test);
-        return test;
+        return data.map(el => this.renderTask(el)).join('');
     }
 
     generateTaskMarkup(data) {
@@ -40,36 +38,6 @@ class TaskContainerView {
                 </div>
             </div>
         `
-    }
-
-
-    update(data){
-        this.#data = data;
-        const newMarkup = this.generateTaskMarkup(data);
-    
-        const newDOM = document.createRange().createContextualFragment(newMarkup);
-        const newElements = Array.from(newDOM.querySelectorAll('*'));
-        const curElements = Array.from(this.#parentEL.querySelectorAll('*'));
-    
-        newElements.forEach((newEl, i) => {
-            const curEl = curElements[i];
-            // console.log(curEl, newEl.isEqualNode(curEl));
-    
-            // Updates changed TEXT
-            if (
-                !newEl.isEqualNode(curEl) &&
-                newEl.firstChild?.nodeValue.trim() !== ''
-            ) {
-                // console.log('💥', newEl.firstChild.nodeValue.trim());
-                curEl.textContent = newEl.textContent;
-            }
-    
-            // Updates changed ATTRIBUES
-            if (!newEl.isEqualNode(curEl))
-                Array.from(newEl.attributes).forEach(attr =>
-                    curEl.setAttribute(attr.name, attr.value)
-                );
-        });
     }
 
 }

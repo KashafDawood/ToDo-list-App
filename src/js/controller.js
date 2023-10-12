@@ -12,7 +12,10 @@ const controlFormData = function(){
     //push data to model.task array
     model.tasks.push(formData);
     console.log(model.tasks);
-    taskContainerView.update(model.tasks);
+    //display the last added task
+    const lastTaskIndex = model.tasks.length-1;
+    console.log(lastTaskIndex);
+    taskContainerView.renderTask(model.tasks[lastTaskIndex]);
 }
 
 // const controlTask = function(){

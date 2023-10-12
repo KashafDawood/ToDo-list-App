@@ -65,6 +65,7 @@ class TaskEditorView{
             e.preventDefault();
             //handle data to controller
             handler();
+            config.TaskEditorContainer.style.display = "none";
         });
     }
 }
