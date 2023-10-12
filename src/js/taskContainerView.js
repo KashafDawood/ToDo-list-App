@@ -27,17 +27,25 @@ class TaskContainerView {
         return `
             <div class="tasks">
                 <div class="taskTitle">
-                    <h5>${data.taskTitle}</h5>
+                    <h5><i class='bx bxs-checkbox-checked taskCheck'></i>${data.taskTitle}</h5>
                     <i class='bx bx-chevron-right'></i>
                 </div>
 
                 <div class="taskSpecs">
-                    <div class="taskDueDate taskOptionalData"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
-                    <div class="taskCatagory taskOptionalData"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
-                    <div class="taskPriority taskOptionalData"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
+                    <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
+                    <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
+                    <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
                 </div>
             </div>
         `
+    }
+
+    addHandlerTaskComplete(){
+        config.taskComplete.addEventListener("click", function(e){
+            e.preventDefault();
+            //change styling of task
+            config.taskComplete.style.color = "var(--primary)";
+        })
     }
 
 }

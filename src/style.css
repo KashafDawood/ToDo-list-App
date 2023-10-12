@@ -208,6 +208,7 @@ i{
 .taskTitle{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 1.5rem;
 }
 
@@ -215,6 +216,15 @@ i{
     display: grid;
     padding: 1rem 0 0; 
     grid-template-columns: repeat(6, 1fr);
+}
+
+.taskCheck{
+    font-size: 1.2rem;
+
+}
+
+.taskOptionalData{
+    display: none;
 }
 
 /* -----------------------taskCustomizerContainer--------------- */

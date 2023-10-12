@@ -1,13 +1,5 @@
 import * as config from "./config.js";
 
-
-// export let taskTitleInput = document.querySelector(".title--input").value;
-// export let taskDescriptionInput = document.querySelector(".description--input").value;
-// export let taskCatagoryInput = document.querySelector(".catagory--input").value;
-// export let taskDueDateInput = document.querySelector(".dueDate--input").value;
-// export let taskPriorityInput = document.querySelector(".priority--input");
-
-
 class TaskEditorView{
     #parentEL = document.querySelector(".taskCustomizerContainer");
     #data;
@@ -75,6 +67,8 @@ class TaskEditorView{
             config.TaskEditorContainer.style.display = "none";
         });
     }
+
+
 }
 
 export default new TaskEditorView();

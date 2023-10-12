@@ -584,7 +584,7 @@ var _configJs = require("./config.js");
 const controlFormData = function() {
     const formData = (0, _taskEditorViewJsDefault.default).getFormData();
     if (!formData) return;
-    if (formData.taskTitle === "") return;
+    if (!formData.taskTitle) return;
     console.log(formData);
     //push data to model.task array
     _modelJs.tasks.push(formData);
@@ -603,6 +603,7 @@ const init = function() {
     (0, _taskEditorViewJsDefault.default).addHandlerForm(controlFormData);
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
     (0, _taskContainerViewJsDefault.default).renderTaskArray(_modelJs.tasks);
+    (0, _taskContainerViewJsDefault.default).addHandlerTaskComplete();
 // taskContainerView.addHandlerRender(controlTask);
 // taskContainerView.generateMarkupForTaskArray(model.tasks);
 };
@@ -612,11 +613,6 @@ init();
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _configJs = require("./config.js");
-// export let taskTitleInput = document.querySelector(".title--input").value;
-// export let taskDescriptionInput = document.querySelector(".description--input").value;
-// export let taskCatagoryInput = document.querySelector(".catagory--input").value;
-// export let taskDueDateInput = document.querySelector(".dueDate--input").value;
-// export let taskPriorityInput = document.querySelector(".priority--input");
 class TaskEditorView {
     #parentEL = document.querySelector(".taskCustomizerContainer");
     #data;
@@ -689,6 +685,7 @@ parcelHelpers.export(exports, "priorityBtnContainer", ()=>priorityBtnContainer);
 parcelHelpers.export(exports, "priorityBtns", ()=>priorityBtns);
 parcelHelpers.export(exports, "taskContainer", ()=>taskContainer);
 parcelHelpers.export(exports, "optionalData", ()=>optionalData);
+parcelHelpers.export(exports, "taskComplete", ()=>taskComplete);
 const closeTaskEditorBtn = document.querySelector(".closeIcon");
 const TaskEditorContainer = document.querySelector(".taskCustomizerContainer");
 const task = document.querySelectorAll(".tasks");
@@ -699,6 +696,7 @@ const priorityBtnContainer = document.querySelector(".priorityBtn");
 const priorityBtns = document.querySelectorAll(".priority--input");
 const taskContainer = document.querySelector(".taskContainer");
 const optionalData = document.querySelectorAll(".taskOptionalData");
+const taskComplete = document.querySelector(".taskCheck");
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -757,17 +755,24 @@ class TaskContainerView {
         return `
             <div class="tasks">
                 <div class="taskTitle">
-                    <h5>${data.taskTitle}</h5>
+                    <h5><i class='bx bxs-checkbox-checked taskCheck'></i>${data.taskTitle}</h5>
                     <i class='bx bx-chevron-right'></i>
                 </div>
 
                 <div class="taskSpecs">
-                    <div class="taskDueDate taskOptionalData"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
-                    <div class="taskCatagory taskOptionalData"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
-                    <div class="taskPriority taskOptionalData"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
+                    <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
+                    <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
+                    <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
                 </div>
             </div>
         `;
+    }
+    addHandlerTaskComplete() {
+        _configJs.taskComplete.addEventListener("click", function(e) {
+            e.preventDefault();
+            //change styling of task
+            _configJs.taskComplete.style.color = "var(--primary)";
+        });
     }
 }
 exports.default = new TaskContainerView();

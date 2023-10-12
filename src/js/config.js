@@ -11,3 +11,5 @@ export const priorityBtns = document.querySelectorAll('.priority--input');
 export const taskContainer = document.querySelector('.taskContainer');
 
 export const optionalData = document.querySelectorAll('.taskOptionalData');
+
+export const taskComplete = document.querySelector('.taskCheck');

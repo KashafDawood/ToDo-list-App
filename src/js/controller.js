@@ -8,7 +8,7 @@ const controlFormData = function(){
 
     if(!formData) return;
 
-    if(formData.taskTitle === '')return;
+    if(!formData.taskTitle)return;
     
     console.log(formData);
     //push data to model.task array
@@ -30,6 +30,7 @@ const init = function(){
     taskEditorView.addHandlerForm(controlFormData);
     taskContainerView.addTaskHandler();
     taskContainerView.renderTaskArray(model.tasks);
+    taskContainerView.addHandlerTaskComplete();
     // taskContainerView.addHandlerRender(controlTask);
     // taskContainerView.generateMarkupForTaskArray(model.tasks);
 }
