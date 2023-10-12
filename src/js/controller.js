@@ -12,19 +12,20 @@ const controlFormData = function(){
     //push data to model.task array
     model.tasks.push(formData);
     console.log(model.tasks);
+    taskContainerView.renderTaskArray(model.tasks);
 }
 
-const controlTask = function(){
-    taskContainerView.renderTask(model.tasks);
-}
+// const controlTask = function(){
+//     taskContainerView.renderTask(model.tasks);
+// }
 
 const init = function(){
     taskEditorView.closeTaskEditorHandler();
     // console.log(taskEditorView.priorityCheck());
     taskEditorView.addHandlerForm(controlFormData);
     taskContainerView.addTaskHandler();
+    taskContainerView.renderTaskArray(model.tasks);
     // taskContainerView.addHandlerRender(controlTask);
     // taskContainerView.generateMarkupForTaskArray(model.tasks);
-    taskContainerView.addHandlerPreview(taskContainerView.generateMarkupForTaskArray(model.tasks));
 }
 init();
