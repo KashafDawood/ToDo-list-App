@@ -32,9 +32,9 @@ class TaskContainerView {
                 </div>
 
                 <div class="taskSpecs">
-                    <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
-                    <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
-                    <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
+                    <div class="taskDueDate taskOptionalData"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
+                    <div class="taskCatagory taskOptionalData"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
+                    <div class="taskPriority taskOptionalData"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
                 </div>
             </div>
         `

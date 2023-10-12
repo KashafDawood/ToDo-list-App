@@ -5,8 +5,10 @@ import * as config from "./config.js";
 
 const controlFormData = function(){
     const formData = taskEditorView.getFormData();
-    
+
     if(!formData) return;
+
+    if(formData.taskTitle === '')return;
     
     console.log(formData);
     //push data to model.task array

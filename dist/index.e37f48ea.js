@@ -584,6 +584,7 @@ var _configJs = require("./config.js");
 const controlFormData = function() {
     const formData = (0, _taskEditorViewJsDefault.default).getFormData();
     if (!formData) return;
+    if (formData.taskTitle === "") return;
     console.log(formData);
     //push data to model.task array
     _modelJs.tasks.push(formData);
@@ -648,12 +649,17 @@ class TaskEditorView {
     //     });
     // }
     getFormData() {
+        const title = this.#parentEL.querySelector(".title--input").value;
+        const description = this.#parentEL.querySelector(".description--input").value;
+        const catagory = this.#parentEL.querySelector(".catagory--input").value;
+        const dueDate = this.#parentEL.querySelector(".dueDate--input").value;
+        const priority = this.#parentEL.querySelector(".priority--input").value;
         const task = {
-            taskTitle: this.#parentEL.querySelector(".title--input").value,
-            taskDescription: this.#parentEL.querySelector(".description--input").value,
-            taskCatagory: this.#parentEL.querySelector(".catagory--input").value,
-            taskDueDate: this.#parentEL.querySelector(".dueDate--input").value,
-            taskPriority: this.#parentEL.querySelector(".priority--input").value
+            taskTitle: title,
+            taskDescription: description,
+            taskCatagory: catagory,
+            taskDueDate: dueDate,
+            taskPriority: priority
         };
         //clear form
         this.#clearForm();
@@ -682,6 +688,7 @@ parcelHelpers.export(exports, "saveTaskBtn", ()=>saveTaskBtn);
 parcelHelpers.export(exports, "priorityBtnContainer", ()=>priorityBtnContainer);
 parcelHelpers.export(exports, "priorityBtns", ()=>priorityBtns);
 parcelHelpers.export(exports, "taskContainer", ()=>taskContainer);
+parcelHelpers.export(exports, "optionalData", ()=>optionalData);
 const closeTaskEditorBtn = document.querySelector(".closeIcon");
 const TaskEditorContainer = document.querySelector(".taskCustomizerContainer");
 const task = document.querySelectorAll(".tasks");
@@ -691,6 +698,7 @@ const saveTaskBtn = document.querySelector(".btn--save");
 const priorityBtnContainer = document.querySelector(".priorityBtn");
 const priorityBtns = document.querySelectorAll(".priority--input");
 const taskContainer = document.querySelector(".taskContainer");
+const optionalData = document.querySelectorAll(".taskOptionalData");
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -754,9 +762,9 @@ class TaskContainerView {
                 </div>
 
                 <div class="taskSpecs">
-                    <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
-                    <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
-                    <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
+                    <div class="taskDueDate taskOptionalData"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
+                    <div class="taskCatagory taskOptionalData"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
+                    <div class="taskPriority taskOptionalData"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
                 </div>
             </div>
         `;

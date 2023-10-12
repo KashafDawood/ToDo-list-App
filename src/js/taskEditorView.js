@@ -48,12 +48,19 @@ class TaskEditorView{
     // }
 
     getFormData(){
+
+        const title = this.#parentEL.querySelector('.title--input').value;
+        const description = this.#parentEL.querySelector('.description--input').value;
+        const catagory = this.#parentEL.querySelector('.catagory--input').value;
+        const dueDate = this.#parentEL.querySelector('.dueDate--input').value;
+        const priority = this.#parentEL.querySelector('.priority--input').value;
+
         const task = {
-            taskTitle: this.#parentEL.querySelector('.title--input').value,
-            taskDescription : this.#parentEL.querySelector('.description--input').value,
-            taskCatagory : this.#parentEL.querySelector('.catagory--input').value,
-            taskDueDate : this.#parentEL.querySelector('.dueDate--input').value,
-            taskPriority : this.#parentEL.querySelector('.priority--input').value,
+            taskTitle: title,
+            taskDescription : description,
+            taskCatagory : catagory,
+            taskDueDate : dueDate,
+            taskPriority : priority,
         }
         //clear form
         this.#clearForm();
