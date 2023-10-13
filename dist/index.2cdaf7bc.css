@@ -201,6 +201,18 @@ i {
   display: none;
 }
 
+.checked {
+  color: var(--primary);
+}
+
+.taskcomplete {
+  opacity: .6;
+}
+
+.titleLine {
+  text-decoration-line: line-through;
+}
+
 .taskCustomizerContainer {
   background-color: var(--secondary);
   border-radius: 15px;

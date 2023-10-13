@@ -227,6 +227,19 @@ i{
     display: none;
 }
 
+/* ---------------toggle task checkbox css--------------  */
+.checked{
+    color: var(--primary);
+}
+
+.taskcomplete{
+    opacity: 0.6;
+}
+
+.titleLine{
+    text-decoration-line: line-through;
+}
+
 /* -----------------------taskCustomizerContainer--------------- */
 .taskCustomizerContainer{
     display: none;

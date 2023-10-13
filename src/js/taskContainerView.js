@@ -27,7 +27,7 @@ class TaskContainerView {
         return `
             <div class="tasks">
                 <div class="taskTitle">
-                    <h5><i class='bx bxs-checkbox-checked taskCheck'></i>${data.taskTitle}</h5>
+                    <h5 class="title"><i class='bx bxs-checkbox-checked taskCheck'></i>${data.taskTitle}</h5>
                     <i class='bx bx-chevron-right'></i>
                 </div>
 
@@ -41,11 +41,18 @@ class TaskContainerView {
     }
 
     addHandlerTaskComplete(){
-        config.taskComplete.addEventListener("click", function(e){
+        const tasks = document.querySelectorAll(".tasks");
+
+        tasks.forEach(el => el.addEventListener("click", function(e){
             e.preventDefault();
             //change styling of task
-            config.taskComplete.style.color = "var(--primary)";
-        })
+            const btn = e.target.closest('.taskCheck');
+            const task = e.target.closest('.tasks');
+            const taskTitle = e.target.closest('.title');
+            btn.classList.toggle('checked');
+            taskTitle.classList.toggle('titleLine');
+            task.classList.toggle('taskcomplete');
+        }));
     }
 
 }
