@@ -46,25 +46,17 @@ class TaskContainerView {
 
         tasks.addEventListener("click", function(e){
             e.preventDefault();
+            const target = e.target;
             //change styling of task
-            e.target.closest('.taskCheck').classList.toggle('checked');
-            // e.target.closest('.title').classList.toggle('titleLine');
-            // taskTitle.classList.toggle('titleLine');
-            // task.classList.toggle('taskcomplete');
+            target.closest('.taskCheck').classList.toggle('checked');
+            const task = target.parentNode;
+            const grandparent = target.closest('.tasks');
+            grandparent.classList.toggle('taskcomplete');
+            const title = target.closest('.tasks').querySelector('.title');
+            title.classList.toggle('titleLine');
         });
     }
 
-    // addHandlerTaskComplete(){
-    //     const tasks = document.querySelectorAll(".tasks");
-
-    //     tasks.forEach(el => el.addEventListener("click", function(e){
-    //         e.preventDefault();
-    //         //change styling of task
-    //         e.target.closest('.taskCheck').classList.toggle('checked');
-    //         e.target.closest('.title').classList.toggle('titleLine');
-    //         e.target.closest('tasks').classList.toggle('taskcomplete');
-    //     }));
-    // }
 
 }
 

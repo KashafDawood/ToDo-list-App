@@ -177,6 +177,7 @@ i {
 .tasks {
   border-bottom: 1px solid var(--primary);
   cursor: pointer;
+  margin: .5rem 0;
   padding: 1rem;
 }
 
@@ -211,7 +212,7 @@ i {
 }
 
 .taskcomplete {
-  opacity: .6;
+  opacity: .4;
 }
 
 .titleLine {
