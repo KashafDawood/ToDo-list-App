@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"kYpTN":[function(require,module,exports) {
+})({"aD7Zm":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -227,15 +227,9 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
     var port = getPort();
     var protocol = HMR_SECURE || location.protocol == "https:" && !/localhost|127.0.0.1|0.0.0.0/.test(hostname) ? "wss" : "ws";
-    var ws;
-    try {
-        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
-    } catch (err) {
-        if (err.message) console.error(err.message);
-        ws = {};
-    }
+    var ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
     // Web extension context
-    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
+    var extCtx = typeof chrome === "undefined" ? typeof browser === "undefined" ? null : browser : chrome;
     // Safari doesn't support sourceURL in error stacks.
     // eval may also be disabled via CSP, so do a quick check.
     var supportsSourceURL = false;
@@ -299,7 +293,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
         }
     };
     ws.onerror = function(e) {
-        if (e.message) console.error(e.message);
+        console.error(e.message);
     };
     ws.onclose = function() {
         console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
@@ -309,7 +303,7 @@ function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
     if (overlay) {
         overlay.remove();
-        console.log("[parcel] \u2728 Error resolved");
+        console.log("[parcel] ✨ Error resolved");
     }
 }
 function createErrorOverlay(diagnostics) {
@@ -325,13 +319,13 @@ ${frame.code}`;
         errorHTML += `
       <div>
         <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
-          \u{1F6A8} ${diagnostic.message}
+          🚨 ${diagnostic.message}
         </div>
         <pre>${stack}</pre>
         <div>
           ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
         </div>
-        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+        ${diagnostic.documentation ? `<div>📝 <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
       </div>
     `;
     }
@@ -427,10 +421,15 @@ async function hmrApplyUpdates(assets) {
             let promises = assets.map((asset)=>{
                 var _hmrDownload;
                 return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
-                    // Web extension fix
-                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
-                        extCtx.runtime.reload();
-                        return;
+                    // Web extension bugfix for Chromium
+                    // https://bugs.chromium.org/p/chromium/issues/detail?id=1255412#c12
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3) {
+                        if (typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                            extCtx.runtime.reload();
+                            return;
+                        }
+                        asset.url = extCtx.runtime.getURL("/__parcel_hmr_proxy__?url=" + encodeURIComponent(asset.url + "?t=" + Date.now()));
+                        return hmrDownload(asset);
                     }
                     throw err;
                 });
@@ -610,7 +609,7 @@ const init = function() {
 };
 init();
 
-},{"./taskEditorView.js":"bxq0K","./taskContainerView.js":"iTH8D","./model.js":"Y4A21","./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bxq0K":[function(require,module,exports) {
+},{"./taskEditorView.js":"bxq0K","./taskContainerView.js":"iTH8D","./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./model.js":"Y4A21"}],"bxq0K":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _configJs = require("./config.js");
@@ -756,7 +755,7 @@ class TaskContainerView {
         return `
             <div class="tasks">
                 <div class="taskTitle">
-                    <h5 class="title"><i class='bx bxs-checkbox-checked taskCheck'></i>${data.taskTitle}</h5>
+                    <h5 class="title">${data.taskTitle}</h5>
                     <i class='bx bx-chevron-right'></i>
                 </div>
 
@@ -764,22 +763,21 @@ class TaskContainerView {
                     <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
                     <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
                     <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
+                    <button class="taskCheck"><span>&#10003;</span></button>
                 </div>
             </div>
         `;
     }
     addHandlerTaskComplete() {
-        const tasks = document.querySelectorAll(".tasks");
-        tasks.forEach((el)=>el.addEventListener("click", function(e) {
-                e.preventDefault();
-                //change styling of task
-                const btn = e.target.closest(".taskCheck");
-                const task = e.target.closest(".tasks");
-                const taskTitle = e.target.closest(".title");
-                btn.classList.toggle("checked");
-                taskTitle.classList.toggle("titleLine");
-                task.classList.toggle("taskcomplete");
-            }));
+        const tasks = document.querySelector(".taskContainer");
+        tasks.addEventListener("click", function(e) {
+            e.preventDefault();
+            //change styling of task
+            e.target.closest(".taskCheck").classList.toggle("checked");
+        // e.target.closest('.title').classList.toggle('titleLine');
+        // taskTitle.classList.toggle('titleLine');
+        // task.classList.toggle('taskcomplete');
+        });
     }
 }
 exports.default = new TaskContainerView();
@@ -806,6 +804,6 @@ const tasks = [
     }
 ];
 
-},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["kYpTN","aenu9"], "aenu9", "parcelRequire0b74")
+},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire0b74")
 
 //# sourceMappingURL=index.e37f48ea.js.map

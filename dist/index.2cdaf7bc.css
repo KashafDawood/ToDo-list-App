@@ -188,13 +188,18 @@ i {
 }
 
 .taskSpecs {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr) 40px;
   padding: 1rem 0 0;
   display: grid;
 }
 
 .taskCheck {
-  font-size: 1.2rem;
+  cursor: pointer;
+  border: 1px solid var(--primary);
+  color: var(--text);
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 700;
 }
 
 .taskOptionalData {
@@ -202,7 +207,7 @@ i {
 }
 
 .checked {
-  color: var(--primary);
+  background-color: var(--primary);
 }
 
 .taskcomplete {

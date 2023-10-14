@@ -27,7 +27,7 @@ class TaskContainerView {
         return `
             <div class="tasks">
                 <div class="taskTitle">
-                    <h5 class="title"><i class='bx bxs-checkbox-checked taskCheck'></i>${data.taskTitle}</h5>
+                    <h5 class="title">${data.taskTitle}</h5>
                     <i class='bx bx-chevron-right'></i>
                 </div>
 
@@ -35,25 +35,36 @@ class TaskContainerView {
                     <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
                     <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
                     <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
+                    <button class="taskCheck"><span>&#10003;</span></button>
                 </div>
             </div>
         `
     }
 
     addHandlerTaskComplete(){
-        const tasks = document.querySelectorAll(".tasks");
+        const tasks = document.querySelector(".taskContainer");
 
-        tasks.forEach(el => el.addEventListener("click", function(e){
+        tasks.addEventListener("click", function(e){
             e.preventDefault();
             //change styling of task
-            const btn = e.target.closest('.taskCheck');
-            const task = e.target.closest('.tasks');
-            const taskTitle = e.target.closest('.title');
-            btn.classList.toggle('checked');
-            taskTitle.classList.toggle('titleLine');
-            task.classList.toggle('taskcomplete');
-        }));
+            e.target.closest('.taskCheck').classList.toggle('checked');
+            // e.target.closest('.title').classList.toggle('titleLine');
+            // taskTitle.classList.toggle('titleLine');
+            // task.classList.toggle('taskcomplete');
+        });
     }
+
+    // addHandlerTaskComplete(){
+    //     const tasks = document.querySelectorAll(".tasks");
+
+    //     tasks.forEach(el => el.addEventListener("click", function(e){
+    //         e.preventDefault();
+    //         //change styling of task
+    //         e.target.closest('.taskCheck').classList.toggle('checked');
+    //         e.target.closest('.title').classList.toggle('titleLine');
+    //         e.target.closest('tasks').classList.toggle('taskcomplete');
+    //     }));
+    // }
 
 }
 
