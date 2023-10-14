@@ -774,12 +774,28 @@ class TaskContainerView {
             e.preventDefault();
             const target = e.target;
             //change styling of task
-            target.closest(".taskCheck").classList.toggle("checked");
-            const task = target.parentNode;
-            const grandparent = target.closest(".tasks");
-            grandparent.classList.toggle("taskcomplete");
-            const title = target.closest(".tasks").querySelector(".title");
-            title.classList.toggle("titleLine");
+            const btn = target.closest(".taskCheck");
+            if (e.target === btn) {
+                btn.classList.toggle("checked");
+                if (!btn) return;
+                const grandparent = target.closest(".tasks");
+                grandparent.classList.toggle("taskcomplete");
+                const title = target.closest(".tasks").querySelector(".title");
+                title.classList.toggle("titleLine");
+            } else {
+                _configJs.TaskEditorContainer.style.display = "block";
+                const Tasktitle = target.closest(".tasks").querySelector(".title").innerText;
+                const TaskDueDate = target.closest(".tasks").querySelector(".taskDueDate").innerText;
+                const TaskCatagory = target.closest(".tasks").querySelector(".taskCatagory").innerText;
+                const TaskPriority = target.closest(".tasks").querySelector(".taskPriority").innerText;
+                console.log(TaskCatagory);
+                console.log(TaskPriority);
+                let title = document.querySelector(".title--input").value = Tasktitle;
+                let description = document.querySelector(".description--input").value;
+                let catagory = document.querySelector(".catagory--input").value = TaskCatagory;
+                let dueDate = document.querySelector(".dueDate--input").value = TaskDueDate;
+                let priority = document.querySelector(".priority--input").value = TaskPriority;
+            }
         });
     }
 }
@@ -795,14 +811,14 @@ const tasks = [
         taskTitle: "CS301 Quiz",
         taskDescription: "chapter 5 quiz",
         taskCatagory: "Study",
-        taskDueDate: "23-10-4",
+        taskDueDate: "2023-10-04",
         taskPriority: "Priority 1"
     },
     {
         taskTitle: "CS201 Quiz",
         taskDescription: "chapter 2 quiz",
         taskCatagory: "Study",
-        taskDueDate: "23-10-5",
+        taskDueDate: "2023-10-05",
         taskPriority: "Priority 3"
     }
 ];
