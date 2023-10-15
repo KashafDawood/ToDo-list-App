@@ -216,10 +216,20 @@ i{
 .taskSpecs{
     display: grid;
     padding: 1rem 0 0; 
-    grid-template-columns: repeat(3, 1fr) 40px;
+    grid-template-columns: repeat(3, 1fr) 40px 40px;
+    grid-column-gap: 10px;
 }
 
 .taskCheck{
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.taskEdit{
     padding: 10px;
     cursor: pointer;
     border: 1px solid var(--primary);

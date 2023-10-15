@@ -189,12 +189,13 @@ i {
 }
 
 .taskSpecs {
-  grid-template-columns: repeat(3, 1fr) 40px;
+  grid-column-gap: 10px;
+  grid-template-columns: repeat(3, 1fr) 40px 40px;
   padding: 1rem 0 0;
   display: grid;
 }
 
-.taskCheck {
+.taskCheck, .taskEdit {
   cursor: pointer;
   border: 1px solid var(--primary);
   color: var(--text);

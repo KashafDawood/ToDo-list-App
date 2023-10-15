@@ -35,6 +35,7 @@ class TaskContainerView {
                     <div class="taskDueDate"><i class='bx bx-calendar-x'></i>${data.taskDueDate}</div>
                     <div class="taskCatagory"><i class='bx bxs-user-circle'></i>${data.taskCatagory}</div>
                     <div class="taskPriority"><i class='bx bxs-flag-alt'></i>${data.taskPriority}</div>
+                    <button class="taskEdit"><i class='bx bxs-pencil'></i></button>
                     <button class="taskCheck"><span>&#10003;</span></button>
                 </div>
             </div>
@@ -48,16 +49,19 @@ class TaskContainerView {
             e.preventDefault();
             const target = e.target;
             //change styling of task
-            const btn = target.closest('.taskCheck');
-            if(e.target === btn){
-                btn.classList.toggle('checked');
-                if(!btn) return;
+            const taskDoneBtn = target.closest('.taskCheck');
+            const taskEditBtn = target.closest('.taskEdit');
+            if(target === taskDoneBtn){
+                taskDoneBtn.classList.toggle('checked');
                 const grandparent = target.closest('.tasks');
                 grandparent.classList.toggle('taskcomplete');
                 const title = target.closest('.tasks').querySelector('.title');
                 title.classList.toggle('titleLine');
-            }else{
+            }
+            else if(target === taskEditBtn){
                 config.TaskEditorContainer.style.display = "block";
+                const task = target.closest('.tasks');
+                console.log(task);
 
                 const Tasktitle = target.closest('.tasks').querySelector('.title').innerText;
                 const TaskDueDate = target.closest('.tasks').querySelector('.taskDueDate').innerText;
@@ -72,9 +76,26 @@ class TaskContainerView {
                 let catagory = document.querySelector('.catagory--input').value = TaskCatagory;
                 let dueDate = document.querySelector('.dueDate--input').value = TaskDueDate;
                 let priority = document.querySelector('.priority--input').value = TaskPriority;
+                task.remove();
             }
+            else{
+                return;
+            }
+            
         });
     }
+
+    // addHandlerTaskEdit(){
+    //     this.#parentEL.addEventListener('click', function(e){
+    //         e.preventDefault();
+
+    //         const target = e.target;
+    //         const btn = target.closest('.taskEdit');
+    //         if(target === btn){
+    //             console.log(btn);
+    //         }
+    //     })
+    // }
 
 
 }
