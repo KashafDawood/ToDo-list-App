@@ -604,9 +604,7 @@ const init = function() {
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
     (0, _taskContainerViewJsDefault.default).renderTaskArray(_modelJs.tasks);
     (0, _taskContainerViewJsDefault.default).addHandlerTaskComplete();
-// taskContainerView.addHandlerTaskEdit();
-// taskContainerView.addHandlerRender(controlTask);
-// taskContainerView.generateMarkupForTaskArray(model.tasks);
+    (0, _taskContainerViewJsDefault.default).addHandlerTaskEdit(_modelJs.tasks);
 };
 init();
 
@@ -746,6 +744,8 @@ class TaskContainerView {
         const markup = this.generateTaskMarkup(data);
         //insert the markup in html
         _configJs.taskContainer.insertAdjacentHTML("afterbegin", markup);
+        this.addHandlerTaskComplete();
+        this.addHandlerTaskEdit(data);
     }
     renderTaskArray(data) {
         //task info
@@ -771,36 +771,49 @@ class TaskContainerView {
         `;
     }
     addHandlerTaskComplete() {
-        const tasks = document.querySelector(".taskContainer");
-        tasks.addEventListener("click", function(e) {
+        const taskCompleteBtn = document.querySelector(".taskCheck");
+        const task = document.querySelectorAll(".tasks");
+        if (!taskCompleteBtn) return;
+        taskCompleteBtn.addEventListener("click", function(e) {
+            console.log(task);
             e.preventDefault();
             const target = e.target;
+            console.log(target);
             //change styling of task
-            const taskDoneBtn = target.closest(".taskCheck");
-            const taskEditBtn = target.closest(".taskEdit");
-            if (target === taskDoneBtn) {
-                taskDoneBtn.classList.toggle("checked");
-                const grandparent = target.closest(".tasks");
-                grandparent.classList.toggle("taskcomplete");
-                const title = target.closest(".tasks").querySelector(".title");
-                title.classList.toggle("titleLine");
-            } else if (target === taskEditBtn) {
-                _configJs.TaskEditorContainer.style.display = "block";
-                const task = target.closest(".tasks");
-                console.log(task);
-                const Tasktitle = target.closest(".tasks").querySelector(".title").innerText;
-                const TaskDueDate = target.closest(".tasks").querySelector(".taskDueDate").innerText;
-                const TaskCatagory = target.closest(".tasks").querySelector(".taskCatagory").innerText;
-                const TaskPriority = target.closest(".tasks").querySelector(".taskPriority").innerText;
-                console.log(TaskCatagory);
-                console.log(TaskPriority);
-                let title = document.querySelector(".title--input").value = Tasktitle;
-                let description = document.querySelector(".description--input").value;
-                let catagory = document.querySelector(".catagory--input").value = TaskCatagory;
-                let dueDate = document.querySelector(".dueDate--input").value = TaskDueDate;
-                let priority = document.querySelector(".priority--input").value = TaskPriority;
-                task.remove();
-            } else return;
+            // const taskDoneBtn = target.closest('.taskCheck');
+            // taskDoneBtn.classList.toggle('checked');
+            taskCompleteBtn.classList.toggle("checked");
+            const grandparent = target.closest(".tasks");
+            grandparent.classList.toggle("taskcomplete");
+            const title1 = target.closest(".tasks").querySelector(".title");
+            title1.classList.toggle("titleLine");
+        });
+    }
+    addHandlerTaskEdit(data) {
+        const taskEditBtn = this.#parentEL.querySelector(".taskEdit");
+        const task = this.#parentEL.querySelector(".tasks");
+        const matchData = function() {
+            data.map((el)=>{
+                if (el.taskTitle === title && el.taskCatagory === catagory && el.taskDueDate === dueDate && el.taskPriority === priority) return el;
+            });
+        };
+        taskEditBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            const target = e.target;
+            _configJs.TaskEditorContainer.style.display = "block";
+            console.log(taskEditBtn);
+            const Tasktitle = target.closest(".tasks").querySelector(".title").innerText;
+            const TaskDueDate = target.closest(".tasks").querySelector(".taskDueDate").innerText;
+            const TaskCatagory = target.closest(".tasks").querySelector(".taskCatagory").innerText;
+            const TaskPriority = target.closest(".tasks").querySelector(".taskPriority").innerText;
+            let title1 = document.querySelector(".title--input").value = Tasktitle;
+            let description = document.querySelector(".description--input").value;
+            let catagory1 = document.querySelector(".catagory--input").value = TaskCatagory;
+            let dueDate1 = document.querySelector(".dueDate--input").value = TaskDueDate;
+            let priority1 = document.querySelector(".priority--input").value = TaskPriority;
+            const removeIndex = data.findIndex(matchData);
+            data.splice(removeIndex, 1);
+            task.remove();
         });
     }
 }
@@ -825,6 +838,20 @@ const tasks = [
         taskCatagory: "Study",
         taskDueDate: "2023-10-05",
         taskPriority: "Priority 3"
+    },
+    {
+        taskTitle: "CS304 Quiz",
+        taskDescription: "chapter 8 quiz",
+        taskCatagory: "Study",
+        taskDueDate: "2023-10-20",
+        taskPriority: "Priority 2"
+    },
+    {
+        taskTitle: "CS401 Quiz",
+        taskDescription: "chapter 7 quiz",
+        taskCatagory: "Study",
+        taskDueDate: "2023-10-15",
+        taskPriority: "Priority 1"
     }
 ];
 

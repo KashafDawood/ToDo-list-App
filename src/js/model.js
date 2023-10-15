@@ -14,5 +14,19 @@ export const tasks = [
         taskCatagory : 'Study',
         taskDueDate : '2023-10-05',
         taskPriority : 'Priority 3',
+    },
+    {
+        taskTitle: 'CS304 Quiz',
+        taskDescription : 'chapter 8 quiz',
+        taskCatagory : 'Study',
+        taskDueDate : '2023-10-20',
+        taskPriority : 'Priority 2',
+    },
+    {
+        taskTitle: 'CS401 Quiz',
+        taskDescription : 'chapter 7 quiz',
+        taskCatagory : 'Study',
+        taskDueDate : '2023-10-15',
+        taskPriority : 'Priority 1',
     }
 ];
