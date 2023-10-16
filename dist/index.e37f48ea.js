@@ -794,27 +794,29 @@ class TaskContainerView {
         });
     }
     addHandlerTaskEdit(data) {
-        const taskEditBtn = this.#parentEL.querySelector(".taskEdit");
+        const taskEditBtn = this.#parentEL.querySelectorAll(".taskEdit");
         const task = this.#parentEL.querySelector(".tasks");
-        taskEditBtn.addEventListener("click", function(e) {
-            e.preventDefault();
-            const target = e.target;
-            _configJs.TaskEditorContainer.style.display = "block";
-            console.log(taskEditBtn);
-            const Tasktitle = target.closest(".tasks").querySelector(".title").innerText;
-            const TaskDueDate = target.closest(".tasks").querySelector(".taskDueDate").innerText;
-            const TaskCatagory = target.closest(".tasks").querySelector(".taskCatagory").innerText;
-            const TaskPriority = target.closest(".tasks").querySelector(".taskPriority").innerText;
-            let title = document.querySelector(".title--input").value = Tasktitle;
-            let description = document.querySelector(".description--input").value;
-            let catagory = document.querySelector(".catagory--input").value = TaskCatagory;
-            let dueDate = document.querySelector(".dueDate--input").value = TaskDueDate;
-            let priority = document.querySelector(".priority--input").value = TaskPriority;
-            task.remove();
-            const tasks = document.querySelectorAll(".tasks");
-            const taskCount = document.querySelector(".noOfTasks");
-            taskCount.innerText = tasks.length;
-        });
+        taskEditBtn.forEach((el, i)=>el.addEventListener("click", function(e) {
+                e.preventDefault();
+                const target = e.target;
+                _configJs.TaskEditorContainer.style.display = "block";
+                console.log(taskEditBtn);
+                const Tasktitle = target.closest(".tasks").querySelector(".title").innerText;
+                const TaskDueDate = target.closest(".tasks").querySelector(".taskDueDate").innerText;
+                const TaskCatagory = target.closest(".tasks").querySelector(".taskCatagory").innerText;
+                const TaskPriority = target.closest(".tasks").querySelector(".taskPriority").innerText;
+                let title = document.querySelector(".title--input").value = Tasktitle;
+                let description = document.querySelector(".description--input").value;
+                let catagory = document.querySelector(".catagory--input").value = TaskCatagory;
+                let dueDate = document.querySelector(".dueDate--input").value = TaskDueDate;
+                let priority = document.querySelector(".priority--input").value = TaskPriority;
+                const index = taskEditBtn.length - 1 - i;
+                (0, _modelJs.deleteIndex)(index);
+                el.closest(".tasks").remove();
+                const tasks = document.querySelectorAll(".tasks");
+                const taskCount = document.querySelector(".noOfTasks");
+                taskCount.innerText = tasks.length;
+            }));
     }
     taskCounter() {
         const taskCount = this.#parentEL.querySelector(".noOfTasks");
@@ -827,8 +829,12 @@ exports.default = new TaskContainerView();
 },{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./model.js":"Y4A21"}],"Y4A21":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "deleteIndex", ()=>deleteIndex);
 parcelHelpers.export(exports, "tasks", ()=>tasks);
 var _configJs = require("./config.js");
+const deleteIndex = function(index) {
+    if (index >= 0 && index < tasks.length) tasks.splice(index, 1);
+};
 const tasks = [
     {
         taskTitle: "CS301 Quiz",

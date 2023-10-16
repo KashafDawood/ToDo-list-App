@@ -1,5 +1,6 @@
 import * as config from "./config.js";
 import { tasks } from "./model.js";
+import { deleteIndex } from "./model.js";
 
 class TaskContainerView {
     #parentEL = document.querySelector(".todoist");
@@ -71,10 +72,10 @@ class TaskContainerView {
     }
 
     addHandlerTaskEdit(data){
-        const taskEditBtn = this.#parentEL.querySelector('.taskEdit');
+        const taskEditBtn = this.#parentEL.querySelectorAll('.taskEdit');
         const task = this.#parentEL.querySelector('.tasks');
 
-        taskEditBtn.addEventListener('click', function(e){
+        taskEditBtn.forEach((el, i) => el.addEventListener('click', function(e){
             e.preventDefault();
 
             const target = e.target;
@@ -92,14 +93,16 @@ class TaskContainerView {
             let catagory = document.querySelector('.catagory--input').value = TaskCatagory;
             let dueDate = document.querySelector('.dueDate--input').value = TaskDueDate;
             let priority = document.querySelector('.priority--input').value = TaskPriority;
-            
-            
-            task.remove();
+
+            const index = taskEditBtn.length - 1 - i;
+            deleteIndex(index);
+
+            el.closest('.tasks').remove();
             const tasks = document.querySelectorAll('.tasks');
             const taskCount = document.querySelector('.noOfTasks');
             taskCount.innerText = tasks.length;
 
-        });
+        }));
     }
 
     taskCounter(){

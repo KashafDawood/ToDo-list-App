@@ -1,5 +1,11 @@
 import * as config from "./config.js";
 
+export const deleteIndex = function(index){
+    if(index >= 0 && index < tasks.length){
+        tasks.splice(index, 1);
+    }
+}
+
 export const tasks = [
     {
         taskTitle: 'CS301 Quiz',
