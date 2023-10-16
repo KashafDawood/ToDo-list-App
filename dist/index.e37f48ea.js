@@ -605,6 +605,7 @@ const init = function() {
     (0, _taskContainerViewJsDefault.default).renderTaskArray(_modelJs.tasks);
     (0, _taskContainerViewJsDefault.default).addHandlerTaskComplete();
     (0, _taskContainerViewJsDefault.default).addHandlerTaskEdit(_modelJs.tasks);
+    (0, _taskContainerViewJsDefault.default).taskCounter();
 };
 init();
 
@@ -731,6 +732,7 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _configJs = require("./config.js");
+var _modelJs = require("./model.js");
 class TaskContainerView {
     #parentEL = document.querySelector(".todoist");
     #data;
@@ -746,11 +748,13 @@ class TaskContainerView {
         _configJs.taskContainer.insertAdjacentHTML("afterbegin", markup);
         this.addHandlerTaskComplete();
         this.addHandlerTaskEdit(data);
+        this.taskCounter();
     }
     renderTaskArray(data) {
         //task info
         this.#data = data;
-        return data.map((el)=>this.renderTask(el)).join("");
+        const renderData = data.map((el)=>this.renderTask(el)).join("");
+        return renderData;
     }
     generateTaskMarkup(data) {
         return `
@@ -785,18 +789,13 @@ class TaskContainerView {
             taskCompleteBtn.classList.toggle("checked");
             const grandparent = target.closest(".tasks");
             grandparent.classList.toggle("taskcomplete");
-            const title1 = target.closest(".tasks").querySelector(".title");
-            title1.classList.toggle("titleLine");
+            const title = target.closest(".tasks").querySelector(".title");
+            title.classList.toggle("titleLine");
         });
     }
     addHandlerTaskEdit(data) {
         const taskEditBtn = this.#parentEL.querySelector(".taskEdit");
         const task = this.#parentEL.querySelector(".tasks");
-        const matchData = function() {
-            data.map((el)=>{
-                if (el.taskTitle === title && el.taskCatagory === catagory && el.taskDueDate === dueDate && el.taskPriority === priority) return el;
-            });
-        };
         taskEditBtn.addEventListener("click", function(e) {
             e.preventDefault();
             const target = e.target;
@@ -806,20 +805,26 @@ class TaskContainerView {
             const TaskDueDate = target.closest(".tasks").querySelector(".taskDueDate").innerText;
             const TaskCatagory = target.closest(".tasks").querySelector(".taskCatagory").innerText;
             const TaskPriority = target.closest(".tasks").querySelector(".taskPriority").innerText;
-            let title1 = document.querySelector(".title--input").value = Tasktitle;
+            let title = document.querySelector(".title--input").value = Tasktitle;
             let description = document.querySelector(".description--input").value;
-            let catagory1 = document.querySelector(".catagory--input").value = TaskCatagory;
-            let dueDate1 = document.querySelector(".dueDate--input").value = TaskDueDate;
-            let priority1 = document.querySelector(".priority--input").value = TaskPriority;
-            const removeIndex = data.findIndex(matchData);
-            data.splice(removeIndex, 1);
+            let catagory = document.querySelector(".catagory--input").value = TaskCatagory;
+            let dueDate = document.querySelector(".dueDate--input").value = TaskDueDate;
+            let priority = document.querySelector(".priority--input").value = TaskPriority;
             task.remove();
+            const tasks = document.querySelectorAll(".tasks");
+            const taskCount = document.querySelector(".noOfTasks");
+            taskCount.innerText = tasks.length;
         });
+    }
+    taskCounter() {
+        const taskCount = this.#parentEL.querySelector(".noOfTasks");
+        const tasks = this.#parentEL.querySelectorAll(".tasks");
+        taskCount.innerText = tasks.length;
     }
 }
 exports.default = new TaskContainerView();
 
-},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Y4A21":[function(require,module,exports) {
+},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./model.js":"Y4A21"}],"Y4A21":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tasks", ()=>tasks);

@@ -1,4 +1,5 @@
 import * as config from "./config.js";
+import { tasks } from "./model.js";
 
 class TaskContainerView {
     #parentEL = document.querySelector(".todoist");
@@ -17,12 +18,14 @@ class TaskContainerView {
         config.taskContainer.insertAdjacentHTML('afterbegin', markup);
         this.addHandlerTaskComplete();
         this.addHandlerTaskEdit(data);
+        this.taskCounter();
     }
 
     renderTaskArray(data) {
         //task info
         this.#data = data;
-        return data.map(el => this.renderTask(el)).join('');
+        const renderData = data.map(el => this.renderTask(el)).join('');
+        return renderData;
     }
 
     generateTaskMarkup(data) {
@@ -71,14 +74,6 @@ class TaskContainerView {
         const taskEditBtn = this.#parentEL.querySelector('.taskEdit');
         const task = this.#parentEL.querySelector('.tasks');
 
-        const matchData = function(){
-            data.map(el => {
-                if(el.taskTitle === title && el.taskCatagory === catagory && el.taskDueDate === dueDate && el.taskPriority === priority){
-                    return el;
-                }
-            })
-        }
-
         taskEditBtn.addEventListener('click', function(e){
             e.preventDefault();
 
@@ -98,13 +93,20 @@ class TaskContainerView {
             let dueDate = document.querySelector('.dueDate--input').value = TaskDueDate;
             let priority = document.querySelector('.priority--input').value = TaskPriority;
             
-            const removeIndex = data.findIndex(matchData);
-            data.splice(removeIndex, 1);
+            
             task.remove();
+            const tasks = document.querySelectorAll('.tasks');
+            const taskCount = document.querySelector('.noOfTasks');
+            taskCount.innerText = tasks.length;
 
         });
     }
 
+    taskCounter(){
+        const taskCount = this.#parentEL.querySelector('.noOfTasks');
+        const tasks = this.#parentEL.querySelectorAll('.tasks');
+        taskCount.innerText = tasks.length;
+    }
 
 }
 

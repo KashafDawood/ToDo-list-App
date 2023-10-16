@@ -32,5 +32,6 @@ const init = function(){
     taskContainerView.renderTaskArray(model.tasks);
     taskContainerView.addHandlerTaskComplete();
     taskContainerView.addHandlerTaskEdit(model.tasks);
+    taskContainerView.taskCounter();
 }
 init();
