@@ -594,17 +594,15 @@ const controlFormData = function() {
     console.log(lastTaskIndex);
     (0, _taskContainerViewJsDefault.default).renderTask(_modelJs.tasks[lastTaskIndex]);
 };
-// const controlTask = function(){
-//     taskContainerView.renderTask(model.tasks);
-// }
 const init = function() {
     (0, _taskEditorViewJsDefault.default).closeTaskEditorHandler();
     // console.log(taskEditorView.priorityCheck());
     (0, _taskEditorViewJsDefault.default).addHandlerForm(controlFormData);
+    (0, _taskEditorViewJsDefault.default).addHandlerDeleteTask();
     (0, _taskContainerViewJsDefault.default).addTaskHandler();
     (0, _taskContainerViewJsDefault.default).renderTaskArray(_modelJs.tasks);
     (0, _taskContainerViewJsDefault.default).addHandlerTaskComplete();
-    (0, _taskContainerViewJsDefault.default).addHandlerTaskEdit(_modelJs.tasks);
+    (0, _taskContainerViewJsDefault.default).addHandlerTaskEdit();
     (0, _taskContainerViewJsDefault.default).taskCounter();
 };
 init();
@@ -623,7 +621,7 @@ class TaskEditorView {
     }
     #clearForm() {
         this.#parentEL.querySelector(".title--input").value = "";
-        this.#parentEL.querySelector(".description--input").value = "";
+        // this.#parentEL.querySelector('.description--input').value = '';
         this.#parentEL.querySelector(".catagory--input").value = "";
         this.#parentEL.querySelector(".dueDate--input").value = "";
         this.#parentEL.querySelector(".priority--input").value = "";
@@ -646,13 +644,13 @@ class TaskEditorView {
     // }
     getFormData() {
         const title = this.#parentEL.querySelector(".title--input").value;
-        const description = this.#parentEL.querySelector(".description--input").value;
+        // const description = this.#parentEL.querySelector('.description--input').value;
         const catagory = this.#parentEL.querySelector(".catagory--input").value;
         const dueDate = this.#parentEL.querySelector(".dueDate--input").value;
         const priority = this.#parentEL.querySelector(".priority--input").value;
         const task = {
             taskTitle: title,
-            taskDescription: description,
+            // taskDescription : description,
             taskCatagory: catagory,
             taskDueDate: dueDate,
             taskPriority: priority
@@ -667,6 +665,18 @@ class TaskEditorView {
             //handle data to controller
             handler();
             _configJs.TaskEditorContainer.style.display = "none";
+        });
+    }
+    addHandlerDeleteTask() {
+        const deleteBtn = this.#parentEL.querySelector(".delete--task");
+        deleteBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            _configJs.TaskEditorContainer.style.display = "none";
+            document.querySelector(".title--input").value = "";
+            // document.querySelector('.description--input').value = '';
+            document.querySelector(".catagory--input").value = "";
+            document.querySelector(".dueDate--input").value = "";
+            document.querySelector(".priority--input").value = "";
         });
     }
 }
@@ -747,7 +757,7 @@ class TaskContainerView {
         //insert the markup in html
         _configJs.taskContainer.insertAdjacentHTML("afterbegin", markup);
         this.addHandlerTaskComplete();
-        this.addHandlerTaskEdit(data);
+        this.addHandlerTaskEdit();
         this.taskCounter();
     }
     renderTaskArray(data) {
@@ -793,12 +803,13 @@ class TaskContainerView {
             title.classList.toggle("titleLine");
         });
     }
-    addHandlerTaskEdit(data) {
+    addHandlerTaskEdit() {
         const taskEditBtn = this.#parentEL.querySelectorAll(".taskEdit");
         const task = this.#parentEL.querySelector(".tasks");
         taskEditBtn.forEach((el, i)=>el.addEventListener("click", function(e) {
                 e.preventDefault();
                 const target = e.target;
+                const index = taskEditBtn.length - 1 - i;
                 _configJs.TaskEditorContainer.style.display = "block";
                 console.log(taskEditBtn);
                 const Tasktitle = target.closest(".tasks").querySelector(".title").innerText;
@@ -806,11 +817,10 @@ class TaskContainerView {
                 const TaskCatagory = target.closest(".tasks").querySelector(".taskCatagory").innerText;
                 const TaskPriority = target.closest(".tasks").querySelector(".taskPriority").innerText;
                 let title = document.querySelector(".title--input").value = Tasktitle;
-                let description = document.querySelector(".description--input").value;
+                // let description = document.querySelector('.description--input').value = data[index].taskDescription;
                 let catagory = document.querySelector(".catagory--input").value = TaskCatagory;
                 let dueDate = document.querySelector(".dueDate--input").value = TaskDueDate;
                 let priority = document.querySelector(".priority--input").value = TaskPriority;
-                const index = taskEditBtn.length - 1 - i;
                 (0, _modelJs.deleteIndex)(index);
                 el.closest(".tasks").remove();
                 const tasks = document.querySelectorAll(".tasks");
@@ -826,7 +836,7 @@ class TaskContainerView {
 }
 exports.default = new TaskContainerView();
 
-},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./model.js":"Y4A21"}],"Y4A21":[function(require,module,exports) {
+},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./model.js":"Y4A21","./controller.js":"aenu9"}],"Y4A21":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "deleteIndex", ()=>deleteIndex);
@@ -838,28 +848,28 @@ const deleteIndex = function(index) {
 const tasks = [
     {
         taskTitle: "CS301 Quiz",
-        taskDescription: "chapter 5 quiz",
+        // taskDescription : 'chapter 5 quiz',
         taskCatagory: "Study",
         taskDueDate: "2023-10-04",
         taskPriority: "Priority 1"
     },
     {
         taskTitle: "CS201 Quiz",
-        taskDescription: "chapter 2 quiz",
+        // taskDescription : 'chapter 2 quiz',
         taskCatagory: "Study",
         taskDueDate: "2023-10-05",
         taskPriority: "Priority 3"
     },
     {
         taskTitle: "CS304 Quiz",
-        taskDescription: "chapter 8 quiz",
+        // taskDescription : 'chapter 8 quiz',
         taskCatagory: "Study",
         taskDueDate: "2023-10-20",
         taskPriority: "Priority 2"
     },
     {
         taskTitle: "CS401 Quiz",
-        taskDescription: "chapter 7 quiz",
+        // taskDescription : 'chapter 7 quiz',
         taskCatagory: "Study",
         taskDueDate: "2023-10-15",
         taskPriority: "Priority 1"

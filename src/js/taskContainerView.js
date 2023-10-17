@@ -18,7 +18,7 @@ class TaskContainerView {
         //insert the markup in html
         config.taskContainer.insertAdjacentHTML('afterbegin', markup);
         this.addHandlerTaskComplete();
-        this.addHandlerTaskEdit(data);
+        this.addHandlerTaskEdit();
         this.taskCounter();
     }
 
@@ -71,7 +71,7 @@ class TaskContainerView {
         });
     }
 
-    addHandlerTaskEdit(data){
+    addHandlerTaskEdit(){
         const taskEditBtn = this.#parentEL.querySelectorAll('.taskEdit');
         const task = this.#parentEL.querySelector('.tasks');
 
@@ -79,6 +79,7 @@ class TaskContainerView {
             e.preventDefault();
 
             const target = e.target;
+            const index = taskEditBtn.length - 1 - i;
 
             config.TaskEditorContainer.style.display = "block";
             console.log(taskEditBtn);
@@ -89,12 +90,11 @@ class TaskContainerView {
             const TaskPriority = target.closest('.tasks').querySelector('.taskPriority').innerText;
 
             let title = document.querySelector('.title--input').value = Tasktitle;
-            let description = document.querySelector('.description--input').value;
+            // let description = document.querySelector('.description--input').value = data[index].taskDescription;
             let catagory = document.querySelector('.catagory--input').value = TaskCatagory;
             let dueDate = document.querySelector('.dueDate--input').value = TaskDueDate;
             let priority = document.querySelector('.priority--input').value = TaskPriority;
 
-            const index = taskEditBtn.length - 1 - i;
             deleteIndex(index);
 
             el.closest('.tasks').remove();

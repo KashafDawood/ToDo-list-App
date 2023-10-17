@@ -13,7 +13,7 @@ class TaskEditorView{
 
     #clearForm(){
         this.#parentEL.querySelector('.title--input').value = '';
-        this.#parentEL.querySelector('.description--input').value = '';
+        // this.#parentEL.querySelector('.description--input').value = '';
         this.#parentEL.querySelector('.catagory--input').value = '';
         this.#parentEL.querySelector('.dueDate--input').value = '';
         this.#parentEL.querySelector('.priority--input').value = '';
@@ -42,14 +42,14 @@ class TaskEditorView{
     getFormData(){
 
         const title = this.#parentEL.querySelector('.title--input').value;
-        const description = this.#parentEL.querySelector('.description--input').value;
+        // const description = this.#parentEL.querySelector('.description--input').value;
         const catagory = this.#parentEL.querySelector('.catagory--input').value;
         const dueDate = this.#parentEL.querySelector('.dueDate--input').value;
         const priority = this.#parentEL.querySelector('.priority--input').value;
 
         const task = {
             taskTitle: title,
-            taskDescription : description,
+            // taskDescription : description,
             taskCatagory : catagory,
             taskDueDate : dueDate,
             taskPriority : priority,
@@ -65,6 +65,19 @@ class TaskEditorView{
             //handle data to controller
             handler();
             config.TaskEditorContainer.style.display = "none";
+        });
+    }
+
+    addHandlerDeleteTask(){
+        const deleteBtn = this.#parentEL.querySelector('.delete--task');
+        deleteBtn.addEventListener("click", function(e){
+            e.preventDefault();
+            config.TaskEditorContainer.style.display = "none";
+            document.querySelector('.title--input').value = '';
+            // document.querySelector('.description--input').value = '';
+            document.querySelector('.catagory--input').value = '';
+            document.querySelector('.dueDate--input').value = '';
+            document.querySelector('.priority--input').value = '';
         });
     }
 

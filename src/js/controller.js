@@ -20,18 +20,15 @@ const controlFormData = function(){
     taskContainerView.renderTask(model.tasks[lastTaskIndex]);
 }
 
-// const controlTask = function(){
-//     taskContainerView.renderTask(model.tasks);
-// }
-
 const init = function(){
     taskEditorView.closeTaskEditorHandler();
     // console.log(taskEditorView.priorityCheck());
     taskEditorView.addHandlerForm(controlFormData);
+    taskEditorView.addHandlerDeleteTask();
     taskContainerView.addTaskHandler();
     taskContainerView.renderTaskArray(model.tasks);
     taskContainerView.addHandlerTaskComplete();
-    taskContainerView.addHandlerTaskEdit(model.tasks);
+    taskContainerView.addHandlerTaskEdit();
     taskContainerView.taskCounter();
 }
 init();
