@@ -12,6 +12,24 @@ class TaskContainerView {
         })
     }
 
+    clock(){
+        const time = this.#parentEL.querySelector(".time");
+        setInterval(function(){
+            const date = new Date;
+            const option = {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+            }
+            const locale = navigator.language;
+    
+            time.textContent = new Intl.DateTimeFormat(locale, option).format(date);
+        });
+
+    }
+
     renderTask(data) {
         //add generate markup with this data
         const markup = this.generateTaskMarkup(data);
@@ -55,11 +73,9 @@ class TaskContainerView {
         if(!taskCompleteBtn) return;
         
         taskCompleteBtn.addEventListener("click", function(e){
-            console.log(task)
 
             e.preventDefault();
             const target = e.target;
-            console.log(target)
             //change styling of task
             // const taskDoneBtn = target.closest('.taskCheck');
             // taskDoneBtn.classList.toggle('checked');
@@ -82,7 +98,6 @@ class TaskContainerView {
             const index = taskEditBtn.length - 1 - i;
 
             config.TaskEditorContainer.style.display = "block";
-            console.log(taskEditBtn);
 
             const Tasktitle = target.closest('.tasks').querySelector('.title').innerText;
             const TaskDueDate = target.closest('.tasks').querySelector('.taskDueDate').innerText;

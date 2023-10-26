@@ -111,39 +111,16 @@ i {
   display: flex;
 }
 
-.navBar {
-  background: var(--secondary);
-  border-radius: 15px;
-  width: 20%;
-  height: 100vh;
-  margin: 1rem;
-  padding: 1.5rem;
+.todoist {
+  width: 100%;
+  margin: 0 10rem;
+  padding: 1rem 2rem;
 }
 
-.Header {
+.todoistHeader {
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   display: flex;
-}
-
-.navLinks {
-  padding: 2rem 0;
-}
-
-.navLinkCatagory {
-  padding: .5rem 0;
-}
-
-.navLink {
-  padding: .2rem 1rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.todoist {
-  width: 80%;
-  padding: 1rem 2rem;
 }
 
 .time, .noOfTasks {
@@ -223,7 +200,7 @@ i {
 .taskCustomizerContainer {
   background-color: var(--secondary);
   border-radius: 15px;
-  width: 31%;
+  width: 30%;
   margin: 1rem;
   padding: 1.5rem;
   display: none;

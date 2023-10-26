@@ -10,13 +10,10 @@ const controlFormData = function(){
 
     if(!formData.taskTitle)return;
     
-    console.log(formData);
     //push data to model.task array
     model.tasks.push(formData);
-    console.log(model.tasks);
     //display the last added task
     const lastTaskIndex = model.tasks.length-1;
-    console.log(lastTaskIndex);
     taskContainerView.renderTask(model.tasks[lastTaskIndex]);
 }
 
@@ -30,5 +27,6 @@ const init = function(){
     taskContainerView.addHandlerTaskComplete();
     taskContainerView.addHandlerTaskEdit();
     taskContainerView.taskCounter();
+    taskContainerView.clock();
 }
 init();
